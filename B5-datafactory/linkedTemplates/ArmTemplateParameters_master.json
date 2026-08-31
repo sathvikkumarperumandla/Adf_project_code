@@ -1,0 +1,90 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "B5-datafactory"
+		},
+		"AzureSqlDatabase2_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase3_password": {
+			"value": ""
+		},
+		"LS_AZURESQL_password": {
+			"value": ""
+		},
+		"LS_S3_secretAccessKey": {
+			"value": ""
+		},
+		"Ls_MySqldb_password": {
+			"value": ""
+		},
+		"ls_dl_accountKey": {
+			"value": ""
+		},
+		"AzureKeyVault999_properties_typeProperties_baseUrl": {
+			"value": "https://DB-SQL-AKV.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "azuresqlservor.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "sqldatabase1"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "adeazuresql"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_server": {
+			"value": "sqldatabaseserveraug.database.windows.net"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_database": {
+			"value": "azuresqldatabase-ci"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_userName": {
+			"value": "adeazuresql"
+		},
+		"AzureSqlDatabase3_properties_typeProperties_server": {
+			"value": "sqldatabaseserveriuly.database.windows.net"
+		},
+		"AzureSqlDatabase3_properties_typeProperties_database": {
+			"value": "azureSQLDB-CI"
+		},
+		"AzureSqlDatabase3_properties_typeProperties_userName": {
+			"value": "adzeazuresql"
+		},
+		"LS_AZURESQL_properties_typeProperties_server": {
+			"value": "sqldatabaseservor.database.windows.net"
+		},
+		"LS_AZURESQL_properties_typeProperties_database": {
+			"value": "azureSQLDB-CI"
+		},
+		"LS_AZURESQL_properties_typeProperties_userName": {
+			"value": "azuresql"
+		},
+		"LS_Github_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/sathvikkumarperumandla/"
+		},
+		"LS_S3_properties_typeProperties_accessKeyId": {
+			"value": "AKIAQDJVW62FGCMCRANR"
+		},
+		"Ls_MySqldb_properties_typeProperties_server": {
+			"value": "127.0.0.1"
+		},
+		"Ls_MySqldb_properties_typeProperties_database": {
+			"value": "sql_practice"
+		},
+		"Ls_MySqldb_properties_typeProperties_username": {
+			"value": "root"
+		},
+		"ls_dl_properties_typeProperties_url": {
+			"value": "https://b5datalakeaccount1.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
