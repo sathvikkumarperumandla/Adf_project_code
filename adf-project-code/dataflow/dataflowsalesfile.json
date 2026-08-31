@@ -1,0 +1,86 @@
+{
+	"name": "dataflowsalesfile",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_df_salesfile",
+						"type": "DatasetReference"
+					},
+					"name": "sourcedata"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sink_csv",
+						"type": "DatasetReference"
+					},
+					"name": "SinkReporting"
+				}
+			],
+			"transformations": [
+				{
+					"name": "selectcolumns"
+				},
+				{
+					"name": "filterclause"
+				},
+				{
+					"name": "SplitCountry"
+				},
+				{
+					"name": "aggregateinvoice"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          InvoiceNo as string,",
+				"          StockCode as string,",
+				"          Description as string,",
+				"          Quantity as short,",
+				"          InvoiceDate as timestamp,",
+				"          UnitPrice as double,",
+				"          CustomerID as double,",
+				"          Country as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     partitionBy('hash', 1)) ~> sourcedata",
+				"sourcedata select(mapColumn(",
+				"          InvoiceNo,",
+				"          InvoiceDate,",
+				"          UnitPrice,",
+				"          CustomerID,",
+				"          Country",
+				"     ),",
+				"     partitionBy('hash', 1),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectcolumns",
+				"selectcolumns filter(InvoiceNo!='537669') ~> filterclause",
+				"filterclause split(Country=='United Kingdom',",
+				"     Country=='Australia',",
+				"     Country=='Germany',",
+				"     disjoint: false) ~> SplitCountry@(UnitedKingdom, Australia, Germany, others)",
+				"SplitCountry@UnitedKingdom aggregate(groupBy(InvoiceNo),",
+				"     UnitPrice = sum(UnitPrice),",
+				"     partitionBy('hash', 1)) ~> aggregateinvoice",
+				"aggregateinvoice sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          InvoiceNo,",
+				"          UnitPrice",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> SinkReporting"
+			]
+		}
+	}
+}

@@ -1,0 +1,36 @@
+{
+	"name": "DelimitedText4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dl",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"param": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().param",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('archive/',formatDateTime(utcnow(),'yyyy/MM/dd'))",
+					"type": "Expression"
+				},
+				"fileSystem": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

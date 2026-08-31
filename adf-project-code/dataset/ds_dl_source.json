@@ -1,0 +1,33 @@
+{
+	"name": "ds_dl_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dl",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"source_parameter": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().source_parameter",
+					"type": "Expression"
+				},
+				"folderPath": "csv-files",
+				"fileSystem": "source-case-4"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

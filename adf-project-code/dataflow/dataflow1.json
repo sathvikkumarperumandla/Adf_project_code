@@ -1,0 +1,54 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_dl_txt",
+						"type": "DatasetReference"
+					},
+					"name": "sourceDL"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "pivot1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ID as short,",
+				"          Product as string,",
+				"          Sales as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     partitionBy('hash', 1)) ~> sourceDL",
+				"sourceDL pivot(groupBy(ID),",
+				"     pivotBy(Product),",
+				"     TS_ = sum(toInteger(Sales)),",
+				"     columnNaming: '$N$V',",
+				"     lateral: true) ~> pivot1",
+				"pivot1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

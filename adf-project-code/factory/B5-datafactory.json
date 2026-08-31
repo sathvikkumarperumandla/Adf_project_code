@@ -1,0 +1,15 @@
+{
+	"name": "B5-datafactory",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ee784760-ba1c-455b-9751-a6bd6327b2c0",
+		"tenantId": "40c47bab-def8-41ae-800e-fb13d6f4ff0c"
+	}
+}

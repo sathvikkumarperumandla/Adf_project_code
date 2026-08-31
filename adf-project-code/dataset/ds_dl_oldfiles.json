@@ -1,0 +1,28 @@
+{
+	"name": "ds_dl_oldfiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dl",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().p_filename",
+					"type": "Expression"
+				},
+				"folderPath": "SOURCE_DATA",
+				"fileSystem": "b5-datalake-container"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

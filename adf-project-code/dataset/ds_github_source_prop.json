@@ -1,0 +1,24 @@
+{
+	"name": "ds_github_source_prop",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Github",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "ADF_PROJECT/refs/heads/main/sales_invoice.csv"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": null
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

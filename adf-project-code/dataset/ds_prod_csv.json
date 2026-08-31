@@ -1,0 +1,20 @@
+{
+	"name": "ds_prod_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "products.csv",
+				"folderPath": "rawdata",
+				"fileSystem": "b5-datalake-container"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
